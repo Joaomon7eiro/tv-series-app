@@ -1,0 +1,12 @@
+{
+  "name": "tv-series",
+  "displayName": "tv-series",
+  "expo": {
+    "name": "tv-series",
+    "slug": "tv-series",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
