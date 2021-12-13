@@ -4,15 +4,15 @@ export const apiActions = {
   API_REQUEST: `${api} API REQUEST`,
 };
 
-interface ApiRequestParams<T> {
+interface ApiRequestParams {
   method: string;
   url: string;
-  body?: T;
-  onSuccess: any;
-  onError: any;
+  body?: any;
+  onSuccess: string;
+  onError: string;
 }
 
-export const apiRequest = ({ method, url, body, onSuccess, onError }: ApiRequestParams<any>) => ({
+export const apiRequest = ({ method, url, body, onSuccess, onError }: ApiRequestParams) => ({
   type: apiActions.API_REQUEST,
   payload: body,
   meta: {

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import { getAllSeries } from '../../../application/redux/actions/series.action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 
@@ -9,7 +8,7 @@ import {
 
 export function SeriesPage() {
   const dispatch = useAppDispatch();
-  const series = useAppSelector(state => state);
+  const series = useAppSelector(state => state.series);
 
   useEffect(() => {
     dispatch(getAllSeries());

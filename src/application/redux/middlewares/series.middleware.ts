@@ -1,8 +1,10 @@
+import { Middleware } from "redux";
 import { apiRequest } from "../actions/api.action";
 import { seriesActions, updateSeries } from "../actions/series.action";
 import { hideSpinner, showSpinner } from "../actions/ui.actions";
+import { RootState } from "../store";
 
-const getSeriesCollection = ({ dispatch }: any) => (next: any) => (action: any) => {
+const getSeriesCollection: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type === seriesActions.GET_SERIES) {
@@ -16,7 +18,7 @@ const getSeriesCollection = ({ dispatch }: any) => (next: any) => (action: any) 
   }
 };
 
-const processSeriesColletion = ({ dispatch }: any) => (next: any) => (action: any) => {
+const processSeriesColletion: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type === seriesActions.GET_SERIES_SUCCESS) {

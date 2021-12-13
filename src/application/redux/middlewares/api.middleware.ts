@@ -1,7 +1,9 @@
+import { Middleware } from "redux";
 import api from "../../../infra/services/api";
 import { apiActions } from "../actions/api.action"
+import { RootState } from "../store";
 
-export const apiMiddleware = ({ dispatch }: any) => (next: any) => (action: any) => {
+export const apiMiddleware: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
 
   if (action.type === apiActions.API_REQUEST) {
     const { method, url, onSuccess, onError } = action.meta;
