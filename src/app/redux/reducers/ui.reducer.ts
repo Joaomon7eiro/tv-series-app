@@ -1,9 +1,13 @@
 import { AnyAction } from "redux";
 import { uiActions } from "../actions/ui.actions";
 
-const initialState = {};
+export type UiState = {
+  pending: boolean
+}
 
-export function uiReducer(state = initialState, action: AnyAction) {
+const initialState = {} as UiState;
+
+export function uiReducer(state = initialState, action: AnyAction): UiState {
   switch (action.type) {
     case uiActions.SHOW_SPINNER: {
       return { ...state, pending: true }

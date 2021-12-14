@@ -15,7 +15,6 @@ type SeriesItemProps = {
 
 export const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
   const navigation = useNavigation();
-
   const { name, image } = data;
 
   const handleNavigate = () => {

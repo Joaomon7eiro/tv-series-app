@@ -1,14 +1,19 @@
-import { Reducer } from "redux";
-import { AnyAction, combineReducers } from "redux";
+import { Reducer, AnyAction, combineReducers } from "redux";
+import { Episode, episodesReducer } from "./episodes.reducer";
+import { Season, seasonsReducer } from "./seasons.reducer";
 import { Series, seriesReducer } from './series.reducer';
-import { uiReducer } from './ui.reducer';
+import { uiReducer, UiState } from './ui.reducer';
 
 export type ApplicationState = {
   series: Series[]
-  ui: object
+  ui: UiState
+  seasons: Season[]
+  episodes: Episode[]
 }
 
 export const rootReducer: Reducer<ApplicationState, AnyAction> = combineReducers<ApplicationState>({
   series: seriesReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  seasons: seasonsReducer,
+  episodes: episodesReducer
 });

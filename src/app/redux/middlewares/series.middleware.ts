@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import removeHtmlFromString from "../../../utils/remove-html-from-string";
 import { apiRequest } from "../actions/api.action";
-import { seriesActions, updateSeries, updateSeriesCollection } from "../actions/series.action";
+import { seriesActions, updateSeriesCollection } from "../actions/series.action";
 import { hideSpinner, showSpinner } from "../actions/ui.actions";
 import { Series } from "../reducers/series.reducer";
 import { RootState } from "../store";
@@ -20,20 +20,6 @@ const getSeriesCollection: Middleware<{}, RootState> = ({ dispatch }) => (next) 
   }
 };
 
-const getSeriesByIdData: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
-  next(action);
-
-  if (action.type === seriesActions.GET_SERIES_BY_ID) {
-    dispatch(apiRequest({
-      url: `/shows/${action.payload}`,
-      method: 'GET',
-      onSuccess: seriesActions.GET_SERIES_BY_ID_SUCCESS,
-      onError: seriesActions.GET_SERIES_BY_ID_ERROR,
-    }));
-    dispatch(showSpinner());
-  }
-};
-
 const processSeriesColletion: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
   next(action);
 
@@ -47,13 +33,4 @@ const processSeriesColletion: Middleware<{}, RootState> = ({ dispatch }) => (nex
   }
 };
 
-const processSeriesData: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
-  next(action);
-
-  if (action.type === seriesActions.GET_SERIES_BY_ID_SUCCESS) {
-    dispatch(updateSeries(action.payload));
-    dispatch(hideSpinner());
-  }
-};
-
-export const seriesMiddleware = [getSeriesCollection, getSeriesByIdData, processSeriesColletion, processSeriesData];
+export const seriesMiddleware = [getSeriesCollection, processSeriesColletion];

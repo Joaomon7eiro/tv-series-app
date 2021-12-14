@@ -31,7 +31,7 @@ const SeriesPage: React.FC = () => {
         data={series}
         keyExtractor={item => String(item.id)}
         ListHeaderComponent={() => <Title>TV SERIES</Title>}
-        ListFooterComponent={() => ui ? <ActivityIndicator /> : null}
+        ListFooterComponent={() => ui.pending ? <ActivityIndicator /> : null}
         contentContainerStyle={{
           paddingBottom: 12,
           paddingTop: 60

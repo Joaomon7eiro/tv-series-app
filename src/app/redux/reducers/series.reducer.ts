@@ -16,24 +16,12 @@ export type Series = {
   }
 }
 
-export type Episode = {
-  id: number
-  name: string
-  number: number
-  summary: string
-  season: number
-  image?: {
-    medium: string
-    original: string;
-  }
-}
-
 const initialState = [] as Series[];
 
 export function seriesReducer(state = initialState, action: AnyAction): Series[] {
   switch (action.type) {
     case seriesActions.UPDATE_SERIES_COLLECTION: {
-      return [...state, ...action.payload];
+      return action.payload;
     }
     default: {
       return state;
