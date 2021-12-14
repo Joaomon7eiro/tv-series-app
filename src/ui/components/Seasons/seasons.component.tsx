@@ -10,16 +10,20 @@ import { getEpisodesBySeasonId } from '../../../app/redux/actions/episodes.actio
 import { EpisodeItem } from '../EpisodeItem/episode-item.component';
 import { ActivityIndicator } from 'react-native';
 import { useTheme } from 'styled-components';
+import { Season } from '../../../app/redux/reducers/seasons.reducer';
 
 type SeasonDropdownProp = {
   label: string;
   value: number
 }
-export function Seasons() {
+
+type SeasonsProps = {
+  data: Season[]
+}
+export function Seasons({ data }: SeasonsProps) {
   const [currentSeasonId, setCurrentSeasonId] = useState(0);
 
   const dispatch = useAppDispatch();
-  const seasons = useAppSelector((state) => state.seasons);
   const episodes = useAppSelector((state) => state.episodes);
   const ui = useAppSelector((state) => state.ui);
 
@@ -30,13 +34,13 @@ export function Seasons() {
   const theme = useTheme();
 
   useEffect(() => {
-    if (seasons.length) {
-      setItems(seasons.map(season => ({
+    if (data.length) {
+      setItems(data.map(season => ({
         label: `Season ${season.number}`,
         value: season.id
       })));
     }
-  }, [seasons]);
+  }, [data]);
 
   const handleDropdownChange = (value: number) => {
     if (value) {

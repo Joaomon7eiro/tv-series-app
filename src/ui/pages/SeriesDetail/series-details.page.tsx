@@ -14,7 +14,7 @@ import {
   Content
 } from './series-details.styles';
 import { getSeasonsBySeriesId } from '../../../app/redux/actions/seasons.action';
-import { useAppDispatch } from '../../../hooks/custom-hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 import { Seasons } from '../../components/Seasons/seasons.component';
 
 type RouteParams = {
@@ -25,11 +25,13 @@ const SeriesDetails: React.FC = () => {
   const route = useRoute();
   const { series } = route.params as RouteParams;
 
+  const seasons = useAppSelector(state => state.seasons);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getSeasonsBySeriesId(series.id));
-  }, []);
+  }, [series.id]);
 
   const genres = useMemo(() => {
     return series.genres.join('/');
@@ -65,7 +67,7 @@ const SeriesDetails: React.FC = () => {
           </SummaryText>
         </Content>
 
-        <Seasons />
+        <Seasons data={seasons} />
 
       </SafeAreaView>
     </Container>
