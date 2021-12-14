@@ -1,4 +1,5 @@
 import { FlatList } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 
@@ -14,7 +15,8 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular}
   font-size: 52px;
   font-weight: bold;
-
-  margin-left: 14px;
+  
+  padding: 24px;
   margin-bottom: 32px;
 `;
+

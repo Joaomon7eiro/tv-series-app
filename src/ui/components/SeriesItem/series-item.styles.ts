@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   flex: 1;
   align-items: center;
-  justify-content: center;
   margin: 8px 4px;
 
   border-radius: 12px;

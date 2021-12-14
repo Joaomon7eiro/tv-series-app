@@ -11,7 +11,7 @@ const getSeriesCollection: Middleware<{}, RootState> = ({ dispatch }) => (next) 
 
   if (action.type === seriesActions.GET_SERIES) {
     dispatch(apiRequest({
-      url: '/shows?page=0',
+      url: `/shows?page=${action.payload}`,
       method: 'GET',
       onSuccess: seriesActions.GET_SERIES_SUCCESS,
       onError: seriesActions.GET_SERIES_ERROR,

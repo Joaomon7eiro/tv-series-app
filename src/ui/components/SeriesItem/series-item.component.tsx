@@ -25,12 +25,10 @@ export const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
   return (
     <Container onPress={handleNavigate}>
       <SeriesContent>
-
         <SeriesImage
           source={{ uri: image?.medium }}
           resizeMode='cover'
         />
-
         <SeriesTitleText>{name}</SeriesTitleText>
       </SeriesContent>
     </Container>

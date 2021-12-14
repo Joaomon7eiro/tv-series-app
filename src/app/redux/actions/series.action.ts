@@ -13,8 +13,9 @@ export const seriesActions = {
   UPDATE_SERIES_COLLECTION: `${series} UPDATE SERIES COLLECTION`,
 };
 
-export const getAllSeries = () => ({
-  type: seriesActions.GET_SERIES
+export const getAllSeries = (page: number) => ({
+  type: seriesActions.GET_SERIES,
+  payload: page
 });
 
 export const getSeriesById = (id: number) => ({
