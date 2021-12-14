@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from '@expo/vector-icons';
 import { SeriesPage } from "../pages/SeriesPage/series.page";
 import SeriesNavigation from './series.navigation';
+import SearchNavigation from './search.navigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,8 +23,8 @@ const TabNavigation: React.FC = () => {
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={SeriesPage}
+        name="SearchTab"
+        component={SearchNavigation}
         options={{
           tabBarIcon: () => <Ionicons name='search' size={24} />
         }}

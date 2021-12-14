@@ -34,11 +34,16 @@ export function Seasons({ data }: SeasonsProps) {
   const theme = useTheme();
 
   useEffect(() => {
+    console.log('ATRAS DO BUG 3');
+
     if (data.length) {
       setItems(data.map(season => ({
         label: `Season ${season.number}`,
         value: season.id
       })));
+      if (currentSeasonId != data[0].id) {
+        setCurrentSeasonId(data[0].id)
+      }
     }
   }, [data]);
 

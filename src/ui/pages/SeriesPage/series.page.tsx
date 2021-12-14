@@ -18,18 +18,21 @@ const SeriesPage: React.FC = () => {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    loadSeries();
-  }, []);
+    console.log('ATRAS DO BUG 1');
+    dispatch(getAllSeries(page));
+  }, [dispatch, page]);
 
   const loadSeries = () => {
     if (!ui.pending) {
-      dispatch(getAllSeries(page));
+      dispatch(getAllSeries(page + 1));
       setPage(page + 1);
     }
   }
 
   const handleOnEndReached = () => {
-    loadSeries();
+    if (!ui.pending) {
+      setPage(page + 1);
+    }
   }
 
   return (
@@ -42,6 +45,10 @@ const SeriesPage: React.FC = () => {
         contentContainerStyle={{
           paddingBottom: 12,
           paddingTop: 60
+        }}
+        columnWrapperStyle={{
+          flex: 1,
+          justifyContent: 'space-between',
         }}
         numColumns={3}
         renderItem={({ item }) => {

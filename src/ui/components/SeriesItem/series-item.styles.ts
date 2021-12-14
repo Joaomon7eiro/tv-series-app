@@ -2,16 +2,12 @@ import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
   flex: 1;
-  align-items: center;
-  margin: 8px 4px;
-
   border-radius: 12px;
+  margin: 8px;
 `;
 
 export const SeriesImage = styled.Image`
-  width: 120px;
-  height: 165px;
-
+  height: 150px;
   border-radius: 12px;
 `;
 
@@ -23,5 +19,3 @@ export const SeriesTitleText = styled.Text`
   margin-top: 2px;
 `;
 
-export const SeriesContent = styled.View`
-`;

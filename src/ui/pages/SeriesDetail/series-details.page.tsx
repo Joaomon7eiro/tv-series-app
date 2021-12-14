@@ -25,21 +25,27 @@ const SeriesDetails: React.FC = () => {
   const route = useRoute();
   const { series } = route.params as RouteParams;
 
-  const seasons = useAppSelector(state => state.seasons);
-
   const dispatch = useAppDispatch();
 
+  const seasons = useAppSelector(state => state.seasons);
+
   useEffect(() => {
+    console.log('ATRAS DO BUG 2');
+
     dispatch(getSeasonsBySeriesId(series.id));
-  }, [series.id]);
+  }, [dispatch, series]);
 
   const genres = useMemo(() => {
+    console.log('ATRAS DO BUG 4');
+
     return series.genres.join('/');
-  }, []);
+  }, [series]);
 
   const days = useMemo(() => {
+    console.log('ATRAS DO BUG 5');
+
     return series.schedule.days.join(',');
-  }, []);
+  }, [series]);
 
   return (
     <Container

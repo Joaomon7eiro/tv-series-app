@@ -1,5 +1,5 @@
 export default function removeHtmlFromString(value: string) {
-  if ((value === null) || value === '') {
+  if (!value) {
     return '';
   }
   return value.replace(/<(.|\n)*?>/g, '');

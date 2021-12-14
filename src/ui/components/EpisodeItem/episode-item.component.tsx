@@ -25,7 +25,7 @@ export function EpisodeItem({ data }: EpisodeItemProps) {
   return (
     <Container onPress={handleNavigation}>
       <Header>
-        <EpisodeImage source={{ uri: data.image?.original }} />
+        <EpisodeImage source={{ uri: data.image ? data.image.original : 'https://plchldr.co/i/500x250?text=tv-series' }} />
         <TitleWrapper>
           <TitleText>{data.number}. {data.name}</TitleText>
 

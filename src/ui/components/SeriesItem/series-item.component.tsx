@@ -6,7 +6,6 @@ import {
   Container,
   SeriesImage,
   SeriesTitleText,
-  SeriesContent
 } from './series-item.styles';
 
 type SeriesItemProps = {
@@ -23,13 +22,11 @@ export const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
 
   return (
     <Container onPress={handleNavigate}>
-      <SeriesContent>
-        <SeriesImage
-          source={{ uri: image?.medium }}
-          resizeMode='cover'
-        />
-        <SeriesTitleText>{name}</SeriesTitleText>
-      </SeriesContent>
+      <SeriesImage
+        source={{ uri: image?.medium }}
+        resizeMode='cover'
+      />
+      <SeriesTitleText>{name}</SeriesTitleText>
     </Container>
   );
 }
