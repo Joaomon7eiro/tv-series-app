@@ -21,7 +21,7 @@ const initialState = [] as Series[];
 export function seriesReducer(state = initialState, action: AnyAction): Series[] {
   switch (action.type) {
     case seriesActions.UPDATE_SERIES_COLLECTION: {
-      return action.payload;
+      return [...state, ...action.payload];
     }
     default: {
       return state;

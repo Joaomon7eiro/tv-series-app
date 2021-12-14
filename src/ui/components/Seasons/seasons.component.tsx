@@ -32,6 +32,12 @@ export function Seasons() {
     })));
   }, [seasons]);
 
+  const handleDropdownChange = (value: number) => {
+    if (value) {
+      dispatch(getEpisodesBySeasonId(value));
+    }
+  }
+
   return (
     <Container>
       <DropDownPicker
@@ -50,11 +56,7 @@ export function Seasons() {
         setOpen={setOpen}
         value={currentSeasonId}
         setValue={setCurrentSeasonId}
-        onChangeValue={(value) => {
-          if (value) {
-            dispatch(getEpisodesBySeasonId(value as number))
-          }
-        }}
+        onChangeValue={handleDropdownChange}
       />
 
       {ui.pending
