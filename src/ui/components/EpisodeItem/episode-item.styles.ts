@@ -1,28 +1,38 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   flex: 1;
 `;
 
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 24px;
+`;
+
 export const EpisodeImage = styled.Image`
-  width: 100%;
-  height: 150px;
+  width: 140px;
+  height: 80px;
 
   border-radius: 12px;
 
-  margin-top: 12px;
+`;
+
+export const TitleWrapper = styled.View`
+  flex:1;
 `;
 
 export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 20px;
 
-  margin-top: 12px;
+  margin-left: 16px;
 `;
 
 export const Description = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.primary.regular};
+  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
 
-  margin-top: 8px;
+  margin-top: 4px;
 `;

@@ -1,9 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Episode } from '../../../app/redux/reducers/episodes.reducer';
 
 import {
   Container,
+  Header,
   EpisodeImage,
+  TitleWrapper,
   TitleText,
   Description,
 } from './episode-item.styles';
@@ -13,10 +16,21 @@ type EpisodeItemProps = {
 }
 
 export function EpisodeItem({ data }: EpisodeItemProps) {
+  const navigation = useNavigation();
+
+  const handleNavigation = () => {
+    navigation.navigate('EpisodeDetails', { episode: data });
+  }
+
   return (
-    <Container>
-      <EpisodeImage source={{ uri: data.image?.original }} />
-      <TitleText>{data.number}. {data.name}</TitleText>
+    <Container onPress={handleNavigation}>
+      <Header>
+        <EpisodeImage source={{ uri: data.image?.original }} />
+        <TitleWrapper>
+          <TitleText>{data.number}. {data.name}</TitleText>
+
+        </TitleWrapper>
+      </Header>
       <Description>{data.summary}</Description>
     </Container>
   );

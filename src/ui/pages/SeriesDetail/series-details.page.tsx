@@ -20,10 +20,6 @@ import { Seasons } from '../../components/Seasons/seasons.component';
 type RouteParams = {
   series: Series
 }
-type SeriesDetails = {
-  children: React.ReactNode
-  route: RouteParams
-}
 
 const SeriesDetails: React.FC = () => {
   const route = useRoute();

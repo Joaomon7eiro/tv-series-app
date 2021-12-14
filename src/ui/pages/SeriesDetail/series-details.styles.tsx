@@ -5,7 +5,7 @@ export const Container = styled.ScrollView`
 `;
 
 export const Content = styled.View`
-  padding: 0 18px 20px;
+  padding: 0 20px 20px;
 `;
 
 export const SeriesImage = styled.Image`

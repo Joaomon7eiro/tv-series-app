@@ -9,6 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { getEpisodesBySeasonId } from '../../../app/redux/actions/episodes.action';
 import { EpisodeItem } from '../EpisodeItem/episode-item.component';
 import { ActivityIndicator } from 'react-native';
+import { useTheme } from 'styled-components';
 
 type SeasonDropdownProp = {
   label: string;
@@ -16,7 +17,6 @@ type SeasonDropdownProp = {
 }
 export function Seasons() {
   const [currentSeasonId, setCurrentSeasonId] = useState(0);
-  const [currentLabel, setCurrentLabel] = useState('Select an Season');
 
   const dispatch = useAppDispatch();
   const seasons = useAppSelector((state) => state.seasons);
@@ -27,15 +27,14 @@ export function Seasons() {
 
   const [items, setItems] = useState<SeasonDropdownProp[]>();
 
+  const theme = useTheme();
+
   useEffect(() => {
-    setItems(seasons.map(season => ({
-      label: `Season ${season.number}`,
-      value: season.id
-    })));
-    if (!currentSeasonId && seasons.length) {
-      const currentSeason = seasons[0];
-      setCurrentSeasonId(currentSeason.id);
-      setCurrentLabel(`Season ${currentSeason.number}`)
+    if (seasons.length) {
+      setItems(seasons.map(season => ({
+        label: `Season ${season.number}`,
+        value: season.id
+      })));
     }
   }, [seasons]);
 
@@ -48,11 +47,16 @@ export function Seasons() {
   return (
     <Container>
       <DropDownPicker
-        placeholder={currentLabel}
+        placeholder='Select a Season'
         listMode="SCROLLVIEW"
         style={{
           borderWidth: 0,
-          width: 140
+          width: 140,
+          height: 40
+        }}
+        labelStyle={{
+          fontFamily: theme.fonts.primary.regular,
+          fontSize: 15
         }}
         dropDownContainerStyle={{
           borderColor: "#ddd"
