@@ -16,6 +16,8 @@ type SeasonDropdownProp = {
 }
 export function Seasons() {
   const [currentSeasonId, setCurrentSeasonId] = useState(0);
+  const [currentLabel, setCurrentLabel] = useState('Select an Season');
+
   const dispatch = useAppDispatch();
   const seasons = useAppSelector((state) => state.seasons);
   const episodes = useAppSelector((state) => state.episodes);
@@ -30,6 +32,11 @@ export function Seasons() {
       label: `Season ${season.number}`,
       value: season.id
     })));
+    if (!currentSeasonId && seasons.length) {
+      const currentSeason = seasons[0];
+      setCurrentSeasonId(currentSeason.id);
+      setCurrentLabel(`Season ${currentSeason.number}`)
+    }
   }, [seasons]);
 
   const handleDropdownChange = (value: number) => {
@@ -41,8 +48,8 @@ export function Seasons() {
   return (
     <Container>
       <DropDownPicker
+        placeholder={currentLabel}
         listMode="SCROLLVIEW"
-        placeholder='Select an Season'
         style={{
           borderWidth: 0,
           width: 140

@@ -22,8 +22,10 @@ const SeriesPage: React.FC = () => {
   }, []);
 
   const loadSeries = () => {
-    dispatch(getAllSeries(page));
-    setPage(page + 1);
+    if (!ui.pending) {
+      dispatch(getAllSeries(page));
+      setPage(page + 1);
+    }
   }
 
   const handleOnEndReached = () => {
@@ -46,7 +48,7 @@ const SeriesPage: React.FC = () => {
           return <SeriesItem data={item} />
         }}
         onEndReached={handleOnEndReached}
-        onEndReachedThreshold={0.08}
+        onEndReachedThreshold={0.1}
       />
     </Container>
   );

@@ -10,7 +10,7 @@ export const Content = styled.View`
 
 export const SeriesImage = styled.Image`
   width: 100%;
-  height: 300px;
+  height: 600px;
 
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;

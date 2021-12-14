@@ -10,7 +10,7 @@ export const Container = styled.TouchableOpacity`
 
 export const SeriesImage = styled.Image`
   width: 120px;
-  height: 150px;
+  height: 165px;
 
   border-radius: 12px;
 `;

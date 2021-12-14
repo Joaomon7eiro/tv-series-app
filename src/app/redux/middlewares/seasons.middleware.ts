@@ -23,8 +23,8 @@ const processSeasonsColletion: Middleware<{}, RootState> = ({ dispatch }) => (ne
   next(action);
 
   if (action.type === seasonsActions.GET_SEASONS_SUCCESS) {
-    dispatch(updateSeasonsCollection(action.payload));
     dispatch(updateEpisodesCollection([]));
+    dispatch(updateSeasonsCollection(action.payload));
     dispatch(hideSpinner());
   }
 
