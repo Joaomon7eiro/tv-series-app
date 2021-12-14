@@ -7,6 +7,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.mon7eiro.tvseries"
+    },
+    "ios": {
+      "bundleIdentifier": "com.mon7eiro.tvseries"
+    }
   }
 }
