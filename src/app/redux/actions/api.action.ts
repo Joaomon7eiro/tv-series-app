@@ -12,13 +12,15 @@ interface ApiRequestParams {
   onError: string;
 }
 
-export const apiRequest = ({ method, url, body, onSuccess, onError }: ApiRequestParams) => ({
+export const apiRequest = ({
+  method, url, body, onSuccess, onError,
+}: ApiRequestParams) => ({
   type: apiActions.API_REQUEST,
   payload: body,
   meta: {
     method,
     url,
     onSuccess,
-    onError
-  }
+    onError,
+  },
 });

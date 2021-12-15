@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,14 +20,52 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "react-native"
+    "react-native",
+    "react-hooks"
   ],
   "rules": {
-    "react-native/no-unused-styles": 2,
-    "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles": 2,
-    "react-native/no-color-literals": 2,
-    "react-native/no-raw-text": 2,
-    "react-native/no-single-element-style-arrays": 2
+    "import/no-extraneous-dependencies": "off",
+    "default-param-last": "off",
+    "max-len": 0,
+    "no-use-before-define": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/style-prop-object": "off",
+    "camelcase": "off",
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

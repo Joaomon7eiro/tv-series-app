@@ -1,9 +1,9 @@
-import { Middleware } from "redux";
-import { apiRequest } from "../actions/api.action";
-import { updateEpisodesCollection } from "../actions/episodes.action";
-import { seasonsActions, updateSeasonsCollection } from "../actions/seasons.action";
-import { hideSpinner, showSpinner } from "../actions/ui.actions";
-import { RootState } from "../store";
+import { Middleware } from 'redux';
+import { apiRequest } from '../actions/api.action';
+import { updateEpisodesCollection } from '../actions/episodes.action';
+import { seasonsActions, updateSeasonsCollection } from '../actions/seasons.action';
+import { hideSpinner, showSpinner } from '../actions/ui.actions';
+import { RootState } from '../store';
 
 const getSeasonsCollection: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
   next(action);
@@ -29,7 +29,6 @@ const processSeasonsColletion: Middleware<{}, RootState> = ({ dispatch }) => (ne
   }
 
   if (action.type === seasonsActions.GET_SEASONS_ERROR) {
-    console.log(action.payload);
     dispatch(hideSpinner());
   }
 };

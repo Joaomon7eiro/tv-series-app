@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import DropDownPicker, { ItemType, ValueType } from 'react-native-dropdown-picker';
+import { ScrollView } from 'react-native-gesture-handler';
+import { ActivityIndicator } from 'react-native';
+import { useTheme } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 import {
   Container,
 } from './seasons.styles';
-import { ScrollView } from 'react-native-gesture-handler';
 import { getEpisodesBySeasonId } from '../../../app/redux/actions/episodes.action';
 import { EpisodeItem } from '../EpisodeItem/episode-item.component';
-import { ActivityIndicator } from 'react-native';
-import { useTheme } from 'styled-components';
 import { Season } from '../../../app/redux/reducers/seasons.reducer';
-
-type SeasonDropdownProp = {
-  label: string;
-  value: number
-}
 
 type SeasonsProps = {
   data: Season[]
 }
-export function Seasons({ data }: SeasonsProps) {
+export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
   const [currentSeasonId, setCurrentSeasonId] = useState(0);
 
   const dispatch = useAppDispatch();
@@ -29,48 +24,46 @@ export function Seasons({ data }: SeasonsProps) {
 
   const [open, setOpen] = useState(false);
 
-  const [items, setItems] = useState<SeasonDropdownProp[]>();
+  const [items, setItems] = useState<ItemType[]>([] as ItemType[]);
 
   const theme = useTheme();
 
   useEffect(() => {
-    console.log('ATRAS DO BUG 3');
-
     if (data.length) {
-      setItems(data.map(season => ({
+      setItems(data.map((season) => ({
         label: `Season ${season.number}`,
-        value: season.id
+        value: season.id,
       })));
-      if (currentSeasonId != data[0].id) {
-        setCurrentSeasonId(data[0].id)
+      if (currentSeasonId !== data[0].id) {
+        setCurrentSeasonId(data[0].id);
       }
     }
   }, [data]);
 
-  const handleDropdownChange = (value: number) => {
+  const handleDropdownChange = (value: ValueType | ValueType[] | null) => {
     if (value) {
-      dispatch(getEpisodesBySeasonId(value));
+      dispatch(getEpisodesBySeasonId(value as number));
     }
-  }
+  };
 
   return (
     <Container>
       <DropDownPicker
-        placeholder='Select a Season'
+        placeholder="Select a Season"
         listMode="SCROLLVIEW"
         style={{
           borderWidth: 0,
           width: 140,
-          height: 40
+          height: 40,
         }}
         labelStyle={{
           fontFamily: theme.fonts.primary.regular,
-          fontSize: 15
+          fontSize: 15,
         }}
         dropDownContainerStyle={{
-          borderColor: "#ddd"
+          borderColor: '#ddd',
         }}
-        dropDownDirection='TOP'
+        dropDownDirection="TOP"
         open={open}
         items={items}
         setOpen={setOpen}
@@ -81,14 +74,13 @@ export function Seasons({ data }: SeasonsProps) {
 
       {ui.pending
         ? <ActivityIndicator />
-        :
-        <ScrollView>
-          {episodes.map((episode) => (
-            <EpisodeItem key={episode.id} data={episode} />
-          ))
-          }
-        </ScrollView>
-      }
+        : (
+          <ScrollView>
+            {episodes.map((episode) => (
+              <EpisodeItem key={episode.id} data={episode} />
+            ))}
+          </ScrollView>
+        )}
     </Container>
   );
-}
+};

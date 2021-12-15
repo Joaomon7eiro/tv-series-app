@@ -1,11 +1,16 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-  flex: 1;
 `;
 
 export const SearchWrapper = styled.View`
   margin: 8px;
+`;
+
+export const SearchTitleText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.secondary.regular};
+  font-size: 36px;
+  margin-left: 20px;
 `;
 
 export const SearchInput = styled.TextInput`

@@ -11,7 +11,7 @@ import {
   SeriesSubtitle,
   Schedule,
   Genres,
-  Content
+  Content,
 } from './series-details.styles';
 import { getSeasonsBySeriesId } from '../../../app/redux/actions/seasons.action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
@@ -21,41 +21,31 @@ type RouteParams = {
   series: Series
 }
 
-const SeriesDetails: React.FC = () => {
+export const SeriesDetails: React.FC = () => {
   const route = useRoute();
   const { series } = route.params as RouteParams;
 
   const dispatch = useAppDispatch();
 
-  const seasons = useAppSelector(state => state.seasons);
+  const seasons = useAppSelector((state) => state.seasons);
 
   useEffect(() => {
-    console.log('ATRAS DO BUG 2');
-
     dispatch(getSeasonsBySeriesId(series.id));
   }, [dispatch, series]);
 
-  const genres = useMemo(() => {
-    console.log('ATRAS DO BUG 4');
+  const genres = useMemo(() => series.genres.join('/'), [series]);
 
-    return series.genres.join('/');
-  }, [series]);
-
-  const days = useMemo(() => {
-    console.log('ATRAS DO BUG 5');
-
-    return series.schedule.days.join(',');
-  }, [series]);
+  const days = useMemo(() => series.schedule.days.join(','), [series]);
 
   return (
     <Container
-      nestedScrollEnabled={true}
+      nestedScrollEnabled
     >
       <SafeAreaView>
 
         <SeriesImage
           source={{ uri: series.image?.original }}
-          resizeMode='cover'
+          resizeMode="cover"
         />
 
         <Content>
@@ -64,7 +54,9 @@ const SeriesDetails: React.FC = () => {
           </TitleText>
 
           <SeriesSubtitle>
-            <Schedule>{days} at {series.schedule.time}</Schedule>
+            <Schedule>
+              {`${days} at ${series.schedule.time}`}
+            </Schedule>
             <Genres>{genres}</Genres>
           </SeriesSubtitle>
 
@@ -78,5 +70,4 @@ const SeriesDetails: React.FC = () => {
       </SafeAreaView>
     </Container>
   );
-}
-export { SeriesDetails };
+};

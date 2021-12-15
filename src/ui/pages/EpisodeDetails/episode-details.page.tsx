@@ -7,13 +7,13 @@ import {
   EpisodeImage,
   Title,
   Summary,
-} from './episode.styles';
+} from './episode-details.styles';
 
 type RouteParams = {
   episode: Episode
 }
 
-export function EpisodeDetails() {
+export const EpisodeDetails: React.FC = () => {
   const route = useRoute();
   const { episode } = route.params as RouteParams;
 
@@ -21,11 +21,11 @@ export function EpisodeDetails() {
     <Container>
       <EpisodeImage source={{ uri: episode.image?.original }} />
 
-      <Title>S{episode.season}:E{episode.number} {episode.name}</Title>
+      <Title>{`S${episode.season}:E${episode.number} ${episode.name}`}</Title>
 
       <Summary>
         {episode.summary}
       </Summary>
     </Container>
   );
-}
+};

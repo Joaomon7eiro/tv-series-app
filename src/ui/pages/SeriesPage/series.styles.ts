@@ -8,7 +8,7 @@ export const Container = styled.View`
 
 export const SeriesFlatlist = styled(FlatList as new () => FlatList<Series>)`
   flex: 1;
-`
+`;
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular}
   font-size: 52px;
@@ -17,4 +17,3 @@ export const Title = styled.Text`
   padding: 24px;
   margin-bottom: 32px;
 `;
-

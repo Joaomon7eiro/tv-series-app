@@ -1,11 +1,14 @@
-import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
-import { ApplicationState, rootReducer } from './reducers/root.reducer';
+import {
+  AnyAction, applyMiddleware, createStore, Store,
+} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { ApplicationState, rootReducer } from './reducers/root.reducer';
 import { apiMiddleware } from './middlewares/api.middleware';
 import { seriesMiddleware } from './middlewares/series.middleware';
 import { seasonsMiddleware } from './middlewares/seasons.middleware';
 import { episodesMiddleware } from './middlewares/episodes.middleware';
 import { searchMiddleware } from './middlewares/search.middleware';
+import { castCreditsMiddleware } from './middlewares/cast-credits.middleware';
 
 const composedEnhancer = composeWithDevTools(
   applyMiddleware(
@@ -13,7 +16,9 @@ const composedEnhancer = composeWithDevTools(
     ...seasonsMiddleware,
     ...episodesMiddleware,
     ...searchMiddleware,
-    apiMiddleware)
+    ...castCreditsMiddleware,
+    apiMiddleware,
+  ),
 );
 const store: Store<ApplicationState, AnyAction> = createStore(rootReducer, composedEnhancer);
 export default store;

@@ -1,50 +1,54 @@
 import React from 'react';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { SeriesPage } from "../pages/SeriesPage/series.page";
+import { SeriesPage } from '../pages/SeriesPage/series.page';
 import SeriesNavigation from './series.navigation';
 import SearchNavigation from './search.navigation';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation: React.FC = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false
+const seriesTabIcon = () => <Ionicons name="home" size={24} />;
+const searchTabIcon = () => <Ionicons name="search" size={24} />;
+const favoriteTabIcon = () => <Ionicons name="heart" size={24} />;
+const settingsTabIcon = () => <Ionicons name="heart" size={24} />;
+
+const TabNavigation: React.FC = () => (
+
+  <Tab.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+    initialRouteName="SeriesTab"
+  >
+    <Tab.Screen
+      name="SeriesTab"
+      component={SeriesNavigation}
+      options={{
+        tabBarIcon: seriesTabIcon,
       }}
-      initialRouteName='SeriesTab'
-    >
-      <Tab.Screen
-        name="SeriesTab"
-        component={SeriesNavigation}
-        options={{
-          tabBarIcon: () => <Ionicons name='home' size={24} />
-        }}
-      />
-      <Tab.Screen
-        name="SearchTab"
-        component={SearchNavigation}
-        options={{
-          tabBarIcon: () => <Ionicons name='search' size={24} />
-        }}
-      />
-      <Tab.Screen
-        name="Favorites"
-        component={SeriesPage}
-        options={{
-          tabBarIcon: () => <Ionicons name='heart' size={24} />
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SeriesPage}
-        options={{
-          tabBarIcon: () => <Ionicons name='settings' size={24} />
-        }}
-      />
-    </Tab.Navigator>
-  )
-}
+    />
+    <Tab.Screen
+      name="SearchTab"
+      component={SearchNavigation}
+      options={{
+        tabBarIcon: searchTabIcon,
+      }}
+    />
+    <Tab.Screen
+      name="Favorites"
+      component={SeriesPage}
+      options={{
+        tabBarIcon: favoriteTabIcon,
+      }}
+    />
+    <Tab.Screen
+      name="Settings"
+      component={SeriesPage}
+      options={{
+        tabBarIcon: settingsTabIcon,
+      }}
+    />
+  </Tab.Navigator>
+);
 
 export default TabNavigation;

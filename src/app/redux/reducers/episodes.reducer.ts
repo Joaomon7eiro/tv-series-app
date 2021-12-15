@@ -1,5 +1,5 @@
-import { AnyAction } from "redux";
-import { episodesActions } from "../actions/episodes.action";
+import { AnyAction } from 'redux';
+import { episodesActions } from '../actions/episodes.action';
 
 export type Episode = {
   id: number
@@ -18,7 +18,7 @@ const initialState = [] as Episode[];
 export function episodesReducer(state = initialState, action: AnyAction): Episode[] {
   switch (action.type) {
     case episodesActions.UPDATE_EPISODES: {
-      return action.payload
+      return action.payload;
     }
     default: {
       return state;

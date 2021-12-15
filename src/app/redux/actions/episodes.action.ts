@@ -1,4 +1,4 @@
-import { Episode } from "../reducers/episodes.reducer";
+import { Episode } from '../reducers/episodes.reducer';
 
 const episodes = '[episodes]';
 
@@ -11,12 +11,10 @@ export const episodesActions = {
 
 export const getEpisodesBySeasonId = (seasonId: number) => ({
   type: episodesActions.GET_EPISODES_BY_SEASON,
-  payload: seasonId
+  payload: seasonId,
 });
 
-
-export const updateEpisodesCollection = (episodes: Episode[]) => ({
+export const updateEpisodesCollection = (episodesData: Episode[]) => ({
   type: episodesActions.UPDATE_EPISODES,
-  payload: episodes
+  payload: episodesData,
 });
-

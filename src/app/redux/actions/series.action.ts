@@ -1,4 +1,4 @@
-import { Series } from "../reducers/series.reducer";
+import { Series } from '../reducers/series.reducer';
 
 const series = '[series]';
 
@@ -11,10 +11,10 @@ export const seriesActions = {
 
 export const getAllSeries = (page: number) => ({
   type: seriesActions.GET_SERIES,
-  payload: page
+  payload: page,
 });
 
-export const updateSeriesCollection = (series: Series[]) => ({
+export const updateSeriesCollection = (seriesData: Series[]) => ({
   type: seriesActions.UPDATE_SERIES_COLLECTION,
-  payload: series
+  payload: seriesData,
 });

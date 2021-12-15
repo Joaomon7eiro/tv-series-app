@@ -1,49 +1,59 @@
 import React, { useState } from 'react';
 import { FlatList } from 'react-native';
-import { searchByName } from '../../../app/redux/actions/search.action';
+import { searchSeriesByName } from '../../../app/redux/actions/search.action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
+import { PersonItem } from '../../components/PersonItem/person-item.component';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
 import {
   Container,
   SearchInput,
-  SearchWrapper
+  SearchWrapper,
+  SearchTitleText,
 } from './search.styles';
 
-export function Search() {
+export const Search: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const dispatch = useAppDispatch();
-  const series = useAppSelector(state => state.search.series);
+  const search = useAppSelector((state) => state.search);
 
   return (
     <Container>
+      <SearchWrapper>
+        <SearchInput
+          value={searchValue}
+          placeholder="Search for series or artists"
+          onSubmitEditing={() => dispatch(searchSeriesByName(searchValue))}
+          onChangeText={setSearchValue}
+        />
+      </SearchWrapper>
+      <SearchTitleText>
+        Series
+      </SearchTitleText>
       <FlatList
-        data={series}
-        keyExtractor={item => String(item.id)}
-        ListHeaderComponent={
-          <SearchWrapper>
-            <SearchInput
-              value={searchValue}
-              placeholder='Search for series or artists'
-              onSubmitEditing={() => dispatch(searchByName(searchValue))}
-              onChangeText={setSearchValue}
-            />
-          </SearchWrapper>
-        }
+        data={search.series}
+        keyExtractor={(item) => String(item.id)}
+        horizontal
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: 12,
-          marginHorizontal: 12
+          paddingHorizontal: 12,
         }}
-        columnWrapperStyle={{
-          flex: 1,
-          justifyContent: 'space-between',
+        renderItem={({ item }) => <SeriesItem data={item} hasFixedSize />}
+      />
+      <SearchTitleText>
+        People
+      </SearchTitleText>
+      <FlatList
+        data={search.people}
+        keyExtractor={(item) => String(item.id)}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 12,
         }}
-        numColumns={2}
-        renderItem={({ item }) => {
-          return <SeriesItem data={item} />
-        }}
+        renderItem={({ item }) => <PersonItem data={item} />}
       />
     </Container>
   );
-}
+};

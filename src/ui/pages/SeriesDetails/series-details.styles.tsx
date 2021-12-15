@@ -44,7 +44,3 @@ export const SummaryText = styled.Text`
 
   margin-top: 20px;
 `;
-
-
-
-

@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Series } from '../../../app/redux/reducers/series.reducer';
+import imagePlaceholder from '../../../utils/image-placeholder.util';
 
 import {
   Container,
@@ -9,24 +10,34 @@ import {
 } from './series-item.styles';
 
 type SeriesItemProps = {
-  data: Series
+  data: Series,
+  hasFixedSize?: boolean
 }
 
-export const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
+export const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
   const navigation = useNavigation();
   const { name, image } = data;
 
   const handleNavigate = () => {
     navigation.navigate('SeriesDetails', { series: data });
-  }
+  };
 
   return (
-    <Container onPress={handleNavigate}>
+    <Container
+      onPress={handleNavigate}
+      hasFixedSize={hasFixedSize}
+
+    >
       <SeriesImage
-        source={{ uri: image?.medium }}
-        resizeMode='cover'
+        source={{ uri: image ? image.original : imagePlaceholder }}
+        resizeMode="cover"
+        hasFixedSize={hasFixedSize}
       />
-      <SeriesTitleText>{name}</SeriesTitleText>
+      <SeriesTitleText
+        numberOfLines={1}
+      >
+        {name}
+      </SeriesTitleText>
     </Container>
   );
-}
+};

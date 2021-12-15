@@ -10,12 +10,12 @@ import store from './app/redux/store';
 import AppNavigation from './ui/navigation';
 import { theme } from './ui/styles/theme';
 
-export default function App() {
+const App = () => {
   const [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
     OpenSans_600SemiBold,
     OpenSans_400Regular,
-    OpenSans_700Bold
+    OpenSans_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -25,10 +25,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <StatusBar style='dark' />
+        <StatusBar style="dark" />
         <AppNavigation />
       </ThemeProvider>
     </Provider>
   );
-}
+};
 
+export default App;

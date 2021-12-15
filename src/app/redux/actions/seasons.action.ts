@@ -1,4 +1,4 @@
-import { Season } from "../reducers/seasons.reducer";
+import { Season } from '../reducers/seasons.reducer';
 
 const seasons = '[seasons]';
 
@@ -11,11 +11,10 @@ export const seasonsActions = {
 
 export const getSeasonsBySeriesId = (id: number) => ({
   type: seasonsActions.GET_SEASONS,
-  payload: id
+  payload: id,
 });
 
-export const updateSeasonsCollection = (seasons: Season[]) => ({
+export const updateSeasonsCollection = (seasonsData: Season[]) => ({
   type: seasonsActions.UPDATE_SEASONS,
-  payload: seasons
+  payload: seasonsData,
 });
-

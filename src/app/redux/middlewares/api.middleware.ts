@@ -1,11 +1,13 @@
-import { Middleware } from "redux";
-import api from "../../../infra/services/api";
-import { apiActions } from "../actions/api.action"
-import { RootState } from "../store";
+import { Middleware } from 'redux';
+import api from '../../../infra/services/api';
+import { apiActions } from '../actions/api.action';
+import { RootState } from '../store';
 
 export const apiMiddleware: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {
   if (action.type === apiActions.API_REQUEST) {
-    const { method, url, onSuccess, onError } = action.meta;
+    const {
+      method, url, onSuccess, onError,
+    } = action.meta;
 
     const apiConfig = {
       method,
@@ -22,4 +24,4 @@ export const apiMiddleware: Middleware<{}, RootState> = ({ dispatch }) => (next)
       .catch((error) => dispatch({ type: onError, payload: error }));
   }
   return next(action);
-}
+};

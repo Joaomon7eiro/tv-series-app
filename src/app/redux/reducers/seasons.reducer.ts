@@ -1,5 +1,5 @@
-import { AnyAction } from "redux";
-import { seasonsActions } from "../actions/seasons.action";
+import { AnyAction } from 'redux';
+import { seasonsActions } from '../actions/seasons.action';
 
 export type Season = {
   id: number;
