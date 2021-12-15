@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { memo } from 'react';
 import { Episode } from '../../../app/redux/reducers/episodes.reducer';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 
@@ -16,7 +16,11 @@ type EpisodeItemProps = {
   data: Episode
 }
 
-export const EpisodeItem: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemProps) => {
+function areEqual(prevProps: EpisodeItemProps, nextProps: EpisodeItemProps) {
+  return prevProps.data.id === nextProps.data.id;
+}
+
+const EpisodeItemComponent: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemProps) => {
   const navigation = useNavigation();
   const {
     name, image, number, summary,
@@ -39,3 +43,6 @@ export const EpisodeItem: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemPro
     </Container>
   );
 };
+
+const EpisodeItem = memo(EpisodeItemComponent, areEqual);
+export { EpisodeItem };
