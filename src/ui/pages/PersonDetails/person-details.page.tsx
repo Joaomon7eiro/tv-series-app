@@ -27,7 +27,7 @@ export const PersonDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCastCreditsByPersonId(id));
-  }, []);
+  }, [id]);
 
   return (
     <Container>

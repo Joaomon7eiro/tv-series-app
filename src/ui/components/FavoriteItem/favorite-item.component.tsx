@@ -7,14 +7,14 @@ import {
   Container,
   SeriesImage,
   SeriesTitleText,
-} from './series-item.styles';
+} from './favorite-item.styles';
 
 type SeriesItemProps = {
   data: Series,
   hasFixedSize?: boolean
 }
 
-const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
+export const FavoriteItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
   const navigation = useNavigation();
   const { name, image } = data;
 
@@ -26,6 +26,7 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) =
     <Container
       onPress={handleNavigate}
       hasFixedSize={hasFixedSize}
+
     >
       <SeriesImage
         source={{ uri: image ? image.original : imagePlaceholder }}
@@ -40,5 +41,3 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) =
     </Container>
   );
 };
-
-export { SeriesItem };

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { createSelector } from 'reselect';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 
 import {
@@ -34,14 +35,22 @@ export const SeriesDetails: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const seasons = useAppSelector((state) => state.seasons);
-  const isFavorite = useAppSelector((state) => state.favorites.some((f) => f.id === series.id));
+
+  const getIsFavorite = createSelector(
+    // First, pass one or more "input selector" functions:
+    (state) => state.favorites,
+    // Then, an "output selector" that receives all the input results as arguments
+    // and returns a final result value
+    (favorites) => favorites.some((f) => f.id === series.id),
+  );
+
+  const isFavorite = useAppSelector(getIsFavorite);
 
   useEffect(() => {
     dispatch(getSeasonsBySeriesId(series.id));
-  }, []);
+  }, [series]);
 
   const genres = useMemo(() => series.genres.join('/'), [series]);
-
   const days = useMemo(() => series.schedule.days.join(','), [series]);
 
   return (
@@ -59,7 +68,7 @@ export const SeriesDetails: React.FC = () => {
           <Header>
             <TitleWrapper>
               <TitleText>
-                {series.name ? series.name : 'AAAAAAAA'}
+                {series.name}
               </TitleText>
             </TitleWrapper>
 

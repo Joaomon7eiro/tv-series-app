@@ -38,7 +38,7 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
         setCurrentSeasonId(data[0].id);
       }
     }
-  }, []);
+  }, [data]);
 
   const handleDropdownChange = (value: ValueType | ValueType[] | null) => {
     if (value) {
