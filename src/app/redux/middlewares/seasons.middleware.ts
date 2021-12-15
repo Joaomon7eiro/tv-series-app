@@ -1,5 +1,5 @@
 import { Middleware } from 'redux';
-import { apiRequest } from '../actions/api.action';
+import { apiRequest } from '../actions/api.actions';
 import { updateEpisodesCollection } from '../actions/episodes.action';
 import { seasonsActions, updateSeasonsCollection } from '../actions/seasons.action';
 import { hideSpinner, showSpinner } from '../actions/ui.actions';

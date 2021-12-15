@@ -18,7 +18,7 @@ const SeriesPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllSeries(page));
-  }, [dispatch, page]);
+  }, [page]);
 
   const handleOnEndReached = () => {
     if (!ui.pending) {

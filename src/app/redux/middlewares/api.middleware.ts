@@ -1,6 +1,6 @@
 import { Middleware } from 'redux';
 import api from '../../../infra/services/api';
-import { apiActions } from '../actions/api.action';
+import { apiActions } from '../actions/api.actions';
 import { RootState } from '../store';
 
 export const apiMiddleware: Middleware<{}, RootState> = ({ dispatch }) => (next) => (action) => {

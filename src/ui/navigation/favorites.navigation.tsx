@@ -1,33 +1,33 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SeriesDetails } from '../pages/SeriesDetails/series-details.page';
-import { SeriesPage } from '../pages/Series/series.page';
 import { EpisodeDetails } from '../pages/EpisodeDetails/episode-details.page';
+import { Search } from '../pages/Search/search.page';
 
-const SeriesStack = createNativeStackNavigator();
+const FavoriteStack = createNativeStackNavigator();
 
-const SeriesNavigation: React.FC = () => (
-  <SeriesStack.Navigator
+const FavoriteNavigation: React.FC = () => (
+  <FavoriteStack.Navigator
     screenOptions={{
       headerShown: false,
     }}
-    initialRouteName="Series"
+    initialRouteName="Favorites"
   >
-    <SeriesStack.Screen
-      name="Series"
-      component={SeriesPage}
+    <FavoriteStack.Screen
+      name="Favorites"
+      component={Search}
     />
 
-    <SeriesStack.Screen
+    <FavoriteStack.Screen
       name="SeriesDetails"
       component={SeriesDetails}
     />
 
-    <SeriesStack.Screen
+    <FavoriteStack.Screen
       name="EpisodeDetails"
       component={EpisodeDetails}
     />
-  </SeriesStack.Navigator>
+  </FavoriteStack.Navigator>
 );
 
-export default SeriesNavigation;
+export default FavoriteNavigation;

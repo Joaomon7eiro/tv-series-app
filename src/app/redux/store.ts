@@ -9,6 +9,7 @@ import { seasonsMiddleware } from './middlewares/seasons.middleware';
 import { episodesMiddleware } from './middlewares/episodes.middleware';
 import { searchMiddleware } from './middlewares/search.middleware';
 import { castCreditsMiddleware } from './middlewares/cast-credits.middleware';
+import { favoritesMiddleware } from './middlewares/favorites.middleware';
 
 const composedEnhancer = composeWithDevTools(
   applyMiddleware(
@@ -17,6 +18,7 @@ const composedEnhancer = composeWithDevTools(
     ...episodesMiddleware,
     ...searchMiddleware,
     ...castCreditsMiddleware,
+    ...favoritesMiddleware,
     apiMiddleware,
   ),
 );

@@ -38,7 +38,7 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
         setCurrentSeasonId(data[0].id);
       }
     }
-  }, [data]);
+  }, []);
 
   const handleDropdownChange = (value: ValueType | ValueType[] | null) => {
     if (value) {
@@ -71,16 +71,13 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
         setValue={setCurrentSeasonId}
         onChangeValue={handleDropdownChange}
       />
+      {ui.pending && <ActivityIndicator />}
+      <ScrollView>
+        {episodes.map((episode) => (
+          <EpisodeItem key={episode.id} data={episode} />
+        ))}
+      </ScrollView>
 
-      {ui.pending
-        ? <ActivityIndicator />
-        : (
-          <ScrollView>
-            {episodes.map((episode) => (
-              <EpisodeItem key={episode.id} data={episode} />
-            ))}
-          </ScrollView>
-        )}
     </Container>
   );
 };

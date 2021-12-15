@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { castCreditsReducer } from './cast-credits.reducer';
 import { Episode, episodesReducer } from './episodes.reducer';
+import { favoritesReducer } from './favorites.reducer';
 import { Search, searchReducer } from './search.reducer';
 import { Season, seasonsReducer } from './seasons.reducer';
 import { Series, seriesReducer } from './series.reducer';
@@ -13,6 +14,7 @@ export type ApplicationState = {
   episodes: Episode[]
   search: Search
   castCredits: Series[]
+  favorites: Series[]
 }
 
 export const rootReducer = combineReducers({
@@ -22,4 +24,5 @@ export const rootReducer = combineReducers({
   episodes: episodesReducer,
   search: searchReducer,
   castCredits: castCreditsReducer,
+  favorites: favoritesReducer,
 });

@@ -16,11 +16,29 @@ export const SeriesImage = styled.Image`
   border-bottom-right-radius: 25px;
 `;
 
+export const Header = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 20px;
+`;
+
+export const FavoriteButton = styled.TouchableOpacity`
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TitleWrapper = styled.View`
+  flex:1;
+`;
+
 export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 36px;
-
-  margin-top: 20px;
 `;
 
 export const SeriesSubtitle = styled.View`

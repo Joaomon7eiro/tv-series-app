@@ -1,6 +1,6 @@
 import { Middleware } from 'redux';
 import removeHtmlFromString from '../../../utils/remove-html-from-string';
-import { apiRequest } from '../actions/api.action';
+import { apiRequest } from '../actions/api.actions';
 import { episodesActions, updateEpisodesCollection } from '../actions/episodes.action';
 import { hideSpinner, showSpinner } from '../actions/ui.actions';
 import { Episode } from '../reducers/episodes.reducer';
