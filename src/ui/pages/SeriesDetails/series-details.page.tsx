@@ -3,6 +3,9 @@ import { useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { createSelector } from 'reselect';
+import { LinearGradient } from 'expo-linear-gradient';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 
 import {
@@ -32,6 +35,8 @@ export const SeriesDetails: React.FC = () => {
   const route = useRoute();
   const { series } = route.params as RouteParams;
 
+  const theme = useTheme();
+
   const dispatch = useAppDispatch();
 
   const seasons = useAppSelector((state) => state.seasons);
@@ -58,11 +63,15 @@ export const SeriesDetails: React.FC = () => {
       nestedScrollEnabled
     >
       <SafeAreaView>
-
         <SeriesImage
           source={{ uri: series.image ? series.image.original : imagePlaceholder }}
           resizeMode="cover"
-        />
+        >
+          <LinearGradient
+            colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
+            style={{ flex: 1, justifyContent: 'center' }}
+          />
+        </SeriesImage>
 
         <Content>
           <Header>
@@ -73,7 +82,7 @@ export const SeriesDetails: React.FC = () => {
             </TitleWrapper>
 
             <FavoriteButton onPress={() => dispatch(toggleFavorite(series))}>
-              <Ionicons name={isFavorite!! ? 'heart-dislike-circle' : 'heart-circle'} size={40} />
+              <Ionicons name={isFavorite!! ? 'heart-dislike-circle' : 'heart-circle'} size={40} color="#fff" />
             </FavoriteButton>
           </Header>
 

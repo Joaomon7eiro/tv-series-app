@@ -7,6 +7,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular}
   font-size: 52px;
   font-weight: bold;
+  color: ${({ theme }) => theme.colors.text};
   
   padding: 24px;
   margin-bottom: 32px;

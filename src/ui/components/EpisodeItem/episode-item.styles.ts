@@ -25,6 +25,7 @@ export const TitleWrapper = styled.View`
 
 export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
 
   margin-left: 16px;
@@ -33,6 +34,7 @@ export const TitleText = styled.Text`
 export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.text};
 
   margin-top: 4px;
 `;

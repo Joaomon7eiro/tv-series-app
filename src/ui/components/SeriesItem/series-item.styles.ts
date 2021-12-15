@@ -24,6 +24,7 @@ export const SeriesImage = styled.Image <SeriesItemProps>`
 export const SeriesTitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.text};
 
   text-align: center;
   margin-top: 2px;

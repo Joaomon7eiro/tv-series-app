@@ -11,6 +11,8 @@ export const SearchTitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 36px;
   margin-left: 20px;
+  color: ${({ theme }) => theme.colors.text};
+
 `;
 
 export const SearchInput = styled.TextInput`
@@ -21,6 +23,7 @@ export const SearchInput = styled.TextInput`
 
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 18px;
+  color: ${({ theme }) => theme.colors.text};
 
   border-width: 1px;
   border-color: #bbb;

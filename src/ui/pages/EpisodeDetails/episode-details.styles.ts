@@ -14,6 +14,7 @@ export const Title = styled.Text`
   font-size: 24px;
 
   margin-top: 8px;
+  color: ${({ theme }) => theme.colors.text};
 
   text-align: center;
 `;
@@ -21,6 +22,7 @@ export const Title = styled.Text`
 export const Summary = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 20px;
+  color: ${({ theme }) => theme.colors.text};
 
   margin: 20px;
 `;

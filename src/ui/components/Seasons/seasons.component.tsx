@@ -57,7 +57,11 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
           height: 40,
         }}
         labelStyle={{
-          fontFamily: theme.fonts.primary.regular,
+          fontFamily: theme.fonts.primary.semiBold,
+          fontSize: 15,
+        }}
+        textStyle={{
+          fontFamily: theme.fonts.primary.semiBold,
           fontSize: 15,
         }}
         dropDownContainerStyle={{

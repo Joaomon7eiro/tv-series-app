@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <AppNavigation />
       </ThemeProvider>
     </Provider>

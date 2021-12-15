@@ -12,6 +12,7 @@ export const PersonImage = styled.Image`
 export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 24px;
+  color: ${({ theme }) => theme.colors.text};
 
   margin-top: 8px;
 
@@ -21,6 +22,7 @@ export const TitleText = styled.Text`
 export const SeriesTitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 18px;
+  color: ${({ theme }) => theme.colors.text};
 
   margin-left: 20px;
   margin-top: 20px;

@@ -21,7 +21,7 @@ export const EpisodeDetails: React.FC = () => {
     <Container>
       <EpisodeImage source={{ uri: episode.image?.original }} />
 
-      <Title>{`S${episode.season}:E${episode.number} ${episode.name}`}</Title>
+      <Title>{`S${episode.season}:E${episode.number}  ${episode.name}`}</Title>
 
       <Summary>
         {episode.summary}

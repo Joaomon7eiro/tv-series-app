@@ -2,13 +2,14 @@ import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView`
   flex: 1;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Content = styled.View`
   padding: 0 20px 20px;
 `;
 
-export const SeriesImage = styled.Image`
+export const SeriesImage = styled.ImageBackground`
   width: 100%;
   height: 600px;
 
@@ -38,6 +39,8 @@ export const TitleWrapper = styled.View`
 export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 36px;
+  color: ${({ theme }) => theme.colors.text};
+
 `;
 
 export const SeriesSubtitle = styled.View`
@@ -48,16 +51,21 @@ export const SeriesSubtitle = styled.View`
 export const Schedule = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.text};
+
 `;
 
 export const Genres = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.text};
+
 `;
 
 export const SummaryText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 18px;
+  color: ${({ theme }) => theme.colors.text};
 
   margin-top: 20px;
 `;
