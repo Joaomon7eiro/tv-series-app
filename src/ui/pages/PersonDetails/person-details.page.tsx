@@ -1,6 +1,8 @@
 import { useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components';
+import { LinearGradient } from 'expo-linear-gradient';
 import { getCastCreditsByPersonId } from '../../../app/redux/actions/cast-credits.actions';
 import { Person } from '../../../app/redux/reducers/search.reducer';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
@@ -21,6 +23,7 @@ type RouteParams = {
 export const PersonDetails: React.FC = () => {
   const route = useRoute();
   const { person: { name, image, id } } = route.params as RouteParams;
+  const theme = useTheme();
 
   const series = useAppSelector((state) => state.castCredits);
 
@@ -31,11 +34,17 @@ export const PersonDetails: React.FC = () => {
 
   return (
     <Container>
-      <PersonImage source={{ uri: image ? image.original : imagePlaceholder }} />
+      <PersonImage source={{ uri: image ? image.original : imagePlaceholder }}>
+        <LinearGradient
+          colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
+          style={{ flex: 1, justifyContent: 'center' }}
+        />
+      </PersonImage>
 
       <TitleText>{name}</TitleText>
 
-      <SeriesTitleText>Series:</SeriesTitleText>
+      {series.length
+        ? <SeriesTitleText>Series:</SeriesTitleText> : null}
       <FlatList
         data={series}
         keyExtractor={(item) => String(item.id)}

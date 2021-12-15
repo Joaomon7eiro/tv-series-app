@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled(LinearGradient)`
+  flex:1;
 `;
 
 export const SearchWrapper = styled.View`
@@ -17,7 +19,7 @@ export const SearchTitleText = styled.Text`
 
 export const SearchInput = styled.TextInput`
   width: 100%;
-  height: 80px;
+  height: 60px;
 
   padding: 0 12px;
 
