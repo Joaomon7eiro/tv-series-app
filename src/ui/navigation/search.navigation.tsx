@@ -12,10 +12,10 @@ const SearchNavigation: React.FC = () => (
     screenOptions={{
       headerShown: false,
     }}
-    initialRouteName="Search"
+    initialRouteName="SearchTab"
   >
     <SearchStack.Screen
-      name="Search"
+      name="SearchTab"
       component={Search}
     />
 

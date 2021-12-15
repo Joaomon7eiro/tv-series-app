@@ -11,10 +11,10 @@ const SeriesNavigation: React.FC = () => (
     screenOptions={{
       headerShown: false,
     }}
-    initialRouteName="Series"
+    initialRouteName="SeriesTab"
   >
     <SeriesStack.Screen
-      name="Series"
+      name="SeriesTab"
       component={SeriesPage}
     />
 

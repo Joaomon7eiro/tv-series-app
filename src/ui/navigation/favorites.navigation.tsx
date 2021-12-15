@@ -11,10 +11,10 @@ const FavoriteNavigation: React.FC = () => (
     screenOptions={{
       headerShown: false,
     }}
-    initialRouteName="Favorites"
+    initialRouteName="FavoritesTab"
   >
     <FavoriteStack.Screen
-      name="Favorites"
+      name="FavoritesTab"
       component={Favorites}
     />
 
