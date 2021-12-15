@@ -25,11 +25,10 @@ export const SearchInput = styled.TextInput`
 
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.text};
 
   border-width: 1px;
-  border-color: #bbb;
+  border-color: ${({ theme }) => theme.colors.primaryDark};
 
   border-radius: 14px;
-  background-color: #ddd;
+  background-color: ${({ theme }) => theme.colors.light};
 `;

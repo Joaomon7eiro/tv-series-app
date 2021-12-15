@@ -32,7 +32,7 @@ export const Search: React.FC = () => {
         <SearchWrapper>
           <SearchInput
             value={searchValue}
-            placeholder="Search for series or artists"
+            placeholder="Search for series and artists"
             onSubmitEditing={() => dispatch(searchSeriesByName(searchValue))}
             onChangeText={setSearchValue}
           />
