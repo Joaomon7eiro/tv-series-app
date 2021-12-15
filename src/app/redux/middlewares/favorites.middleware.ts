@@ -16,7 +16,8 @@ const getFavoritesCollection: Middleware<{}, RootState> = ({ dispatch }) => (nex
 
     if (favoritesData) {
       const favorites = JSON.parse(favoritesData);
-      dispatch(updateFavorites(favorites));
+      const sortedFavorites = (favorites as Series[]).sort((showA, showB) => (showA.name < showB.name ? -1 : 1));
+      dispatch(updateFavorites(sortedFavorites));
     }
     dispatch(hideSpinner());
   }

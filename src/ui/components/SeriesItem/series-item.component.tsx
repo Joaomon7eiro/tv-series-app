@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { memo } from 'react';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 
@@ -14,7 +14,11 @@ type SeriesItemProps = {
   hasFixedSize?: boolean
 }
 
-const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
+function areEqual(prevProps: SeriesItemProps, nextProps: SeriesItemProps) {
+  return prevProps.data.id === nextProps.data.id;
+}
+
+const SeriesItemComponent: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
   const navigation = useNavigation();
   const { name, image } = data;
 
@@ -41,4 +45,5 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) =
   );
 };
 
+const SeriesItem = memo(SeriesItemComponent, areEqual);
 export { SeriesItem };
