@@ -1,8 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 import SeriesNavigation from './series.navigation';
 import SearchNavigation from './search.navigation';

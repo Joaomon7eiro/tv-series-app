@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { memo } from 'react';
+import React from 'react';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 
