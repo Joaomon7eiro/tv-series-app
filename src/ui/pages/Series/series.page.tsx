@@ -15,6 +15,7 @@ const SeriesPage: React.FC = () => {
   const series = useAppSelector((state) => state.series);
   const ui = useAppSelector((state) => state.ui);
 
+  const theme = useTheme();
   const { colors } = useTheme();
 
   const [page, setPage] = useState(0);
@@ -30,7 +31,7 @@ const SeriesPage: React.FC = () => {
   };
 
   const listHeaderComponent = () => (<Title>TV SERIES</Title>);
-  const listFooterComponent = () => (ui.pending ? <ActivityIndicator /> : null);
+  const listFooterComponent = () => (ui.pending ? <ActivityIndicator color={theme.colors.primary} /> : null);
 
   return (
     <Container

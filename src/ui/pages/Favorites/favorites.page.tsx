@@ -17,7 +17,7 @@ export const Favorites: React.FC = () => {
   const { colors } = useTheme();
 
   const listHeaderComponent = () => (<Title>FAVORITE SERIES</Title>);
-  const listFooterComponent = () => (ui.pending ? <ActivityIndicator /> : null);
+  const listFooterComponent = () => (ui.pending ? <ActivityIndicator color={colors.primary} /> : null);
 
   useEffect(() => {
     dispatch(getFavorites());

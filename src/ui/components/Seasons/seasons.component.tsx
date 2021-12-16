@@ -75,7 +75,7 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
         setValue={setCurrentSeasonId}
         onChangeValue={handleDropdownChange}
       />
-      {ui.pending ? <ActivityIndicator /> : null}
+      {ui.pending ? <ActivityIndicator color={theme.colors.primary} /> : null}
       <ScrollView>
         {episodes.map((episode) => (
           <EpisodeItem key={episode.id} data={episode} />
