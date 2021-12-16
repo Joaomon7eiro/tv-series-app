@@ -14,11 +14,7 @@ type SeriesItemProps = {
   hasFixedSize?: boolean
 }
 
-function areEqual(prevProps: SeriesItemProps, nextProps: SeriesItemProps) {
-  return prevProps.data.id === nextProps.data.id;
-}
-
-const SeriesItemComponent: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
+const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) => {
   const navigation = useNavigation();
   const { name, image } = data;
 
@@ -45,5 +41,4 @@ const SeriesItemComponent: React.FC<SeriesItemProps> = ({ data, hasFixedSize = f
   );
 };
 
-const SeriesItem = memo(SeriesItemComponent, areEqual);
 export { SeriesItem };

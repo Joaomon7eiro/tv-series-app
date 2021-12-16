@@ -10,6 +10,9 @@ export const EpisodeImage = styled.ImageBackground`
   height: 500px;
 `;
 
+export const Header = styled.View`
+`;
+
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary.regular};
   font-size: 28px;

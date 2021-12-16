@@ -20,6 +20,9 @@ export const TitleText = styled.Text`
   text-align: center;
 `;
 
+export const Header = styled.View`
+`;
+
 export const SeriesTitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 18px;

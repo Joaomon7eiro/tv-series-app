@@ -1,2 +1,2 @@
-const imagePlaceholder = 'https://plchldr.co/i/500x250?text=tv-series';
+const imagePlaceholder = 'https://plchldr.co/i/220x280?text=tv-series';
 export default imagePlaceholder;

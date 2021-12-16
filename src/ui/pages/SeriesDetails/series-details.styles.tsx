@@ -17,12 +17,16 @@ export const SeriesImage = styled.ImageBackground`
   border-bottom-right-radius: 25px;
 `;
 
-export const Header = styled.View`
+export const ContentHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
-  margin-top: 20px;
+  margin-top: -30px;
+  margin-bottom: 8px;
+`;
+
+export const Header = styled.View`
 `;
 
 export const FavoriteButton = styled.TouchableOpacity`
@@ -52,7 +56,8 @@ export const Schedule = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
-
+  
+  max-width: 60%;
 `;
 
 export const Genres = styled.Text`

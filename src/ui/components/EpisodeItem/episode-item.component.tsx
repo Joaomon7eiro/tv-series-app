@@ -16,11 +16,7 @@ type EpisodeItemProps = {
   data: Episode
 }
 
-function areEqual(prevProps: EpisodeItemProps, nextProps: EpisodeItemProps) {
-  return prevProps.data.id === nextProps.data.id;
-}
-
-const EpisodeItemComponent: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemProps) => {
+const EpisodeItem: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemProps) => {
   const navigation = useNavigation();
   const {
     name, image, number, summary,
@@ -30,13 +26,14 @@ const EpisodeItemComponent: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemP
     navigation.navigate('EpisodeDetails', { episode: data });
   };
 
+  const episodeNumber = number ? `${number}.` : '';
+
   return (
     <Container onPress={handleNavigation}>
       <Header>
         <EpisodeImage source={{ uri: image ? image.original : imagePlaceholder }} />
         <TitleWrapper>
-          <TitleText>{`${number}. ${name}`}</TitleText>
-
+          <TitleText>{`${episodeNumber} ${name}`}</TitleText>
         </TitleWrapper>
       </Header>
       <Description>{summary}</Description>
@@ -44,5 +41,4 @@ const EpisodeItemComponent: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemP
   );
 };
 
-const EpisodeItem = memo(EpisodeItemComponent, areEqual);
 export { EpisodeItem };

@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { createSelector } from 'reselect';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Series } from '../../../app/redux/reducers/series.reducer';
 
@@ -19,6 +18,7 @@ import {
   Content,
   FavoriteButton,
   TitleWrapper,
+  ContentHeader,
   Header,
 } from './series-details.styles';
 import { getSeasonsBySeriesId } from '../../../app/redux/actions/seasons.action';
@@ -26,6 +26,8 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 import { Seasons } from '../../components/Seasons/seasons.component';
 import { toggleFavorite } from '../../../app/redux/actions/favorites.actions';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
+import { RootState } from '../../../app/redux/store';
+import { BackButton } from '../../components/BackButton/back-button.component';
 
 type RouteParams = {
   series: Series
@@ -42,10 +44,7 @@ export const SeriesDetails: React.FC = () => {
   const seasons = useAppSelector((state) => state.seasons);
 
   const getIsFavorite = createSelector(
-    // First, pass one or more "input selector" functions:
-    (state) => state.favorites,
-    // Then, an "output selector" that receives all the input results as arguments
-    // and returns a final result value
+    (state: RootState) => state.favorites,
     (favorites) => favorites.some((f) => f.id === series.id),
   );
 
@@ -56,25 +55,39 @@ export const SeriesDetails: React.FC = () => {
   }, [series]);
 
   const genres = useMemo(() => series.genres.join('/'), [series]);
-  const days = useMemo(() => series.schedule.days.join(','), [series]);
+  const days = useMemo(() => series.schedule.days.join(', '), [series]);
+
+  const formatScheduleValue = () => {
+    let value = '';
+    if (days && days.length) {
+      value += `${days}`;
+      if (series.schedule.time) {
+        value += ` at ${series.schedule.time}`;
+      }
+    } else {
+      value += `${series.schedule.time}`;
+    }
+    return value;
+  };
 
   return (
-    <Container
-      nestedScrollEnabled
-    >
+    <Container>
       <SafeAreaView>
-        <SeriesImage
-          source={{ uri: series.image ? series.image.original : imagePlaceholder }}
-          resizeMode="cover"
-        >
-          <LinearGradient
-            colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
-            style={{ flex: 1, justifyContent: 'center' }}
-          />
-        </SeriesImage>
+        <Header>
+          <SeriesImage
+            source={{ uri: series.image ? series.image.original : imagePlaceholder }}
+            resizeMode="cover"
+          >
+            <LinearGradient
+              colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
+              style={{ flex: 1, justifyContent: 'center' }}
+            />
+          </SeriesImage>
+          <BackButton />
+        </Header>
 
         <Content>
-          <Header>
+          <ContentHeader>
             <TitleWrapper>
               <TitleText>
                 {series.name}
@@ -84,11 +97,11 @@ export const SeriesDetails: React.FC = () => {
             <FavoriteButton onPress={() => dispatch(toggleFavorite(series))}>
               <Ionicons name={isFavorite!! ? 'heart-dislike-circle' : 'heart-circle'} size={40} color="#fff" />
             </FavoriteButton>
-          </Header>
+          </ContentHeader>
 
           <SeriesSubtitle>
             <Schedule>
-              {`${days} at ${series.schedule.time}`}
+              {formatScheduleValue()}
             </Schedule>
             <Genres>{genres}</Genres>
           </SeriesSubtitle>

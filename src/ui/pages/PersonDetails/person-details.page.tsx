@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getCastCreditsByPersonId } from '../../../app/redux/actions/cast-credits.actions';
 import { Person } from '../../../app/redux/reducers/search.reducer';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
@@ -14,7 +15,9 @@ import {
   PersonImage,
   TitleText,
   SeriesTitleText,
+  Header,
 } from './person-details.styles';
+import { BackButton } from '../../components/BackButton/back-button.component';
 
 type RouteParams = {
   person: Person
@@ -34,27 +37,33 @@ export const PersonDetails: React.FC = () => {
 
   return (
     <Container>
-      <PersonImage source={{ uri: image ? image.original : imagePlaceholder }}>
-        <LinearGradient
-          colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
-          style={{ flex: 1, justifyContent: 'center' }}
+      <SafeAreaView>
+        <Header>
+          <PersonImage source={{ uri: image ? image.original : imagePlaceholder }}>
+            <LinearGradient
+              colors={['transparent', 'rgba(100, 100, 100, 0.5)', theme.colors.background]}
+              style={{ flex: 1, justifyContent: 'center' }}
+            />
+          </PersonImage>
+          <BackButton />
+        </Header>
+
+        <TitleText>{name}</TitleText>
+
+        {series.length
+          ? <SeriesTitleText>Series:</SeriesTitleText> : null}
+        <FlatList
+          data={series}
+          keyExtractor={(item) => String(item.id)}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingHorizontal: 12,
+          }}
+          renderItem={({ item }) => <SeriesItem data={item} hasFixedSize />}
         />
-      </PersonImage>
+      </SafeAreaView>
 
-      <TitleText>{name}</TitleText>
-
-      {series.length
-        ? <SeriesTitleText>Series:</SeriesTitleText> : null}
-      <FlatList
-        data={series}
-        keyExtractor={(item) => String(item.id)}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 12,
-        }}
-        renderItem={({ item }) => <SeriesItem data={item} hasFixedSize />}
-      />
     </Container>
   );
 };
