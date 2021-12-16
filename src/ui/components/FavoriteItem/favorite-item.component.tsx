@@ -29,7 +29,7 @@ export const FavoriteItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = f
 
     >
       <SeriesImage
-        source={{ uri: image ? image.original : imagePlaceholder }}
+        source={{ uri: image ? image.medium : imagePlaceholder }}
         resizeMode="cover"
         hasFixedSize={hasFixedSize}
       />

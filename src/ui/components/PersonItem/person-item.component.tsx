@@ -25,7 +25,7 @@ export const PersonItem: React.FC<PersonItemProps> = ({ data }) => {
   return (
     <Container onPress={handleNavigate}>
       <PersonImage
-        source={{ uri: image ? image.original : imagePlaceholder }}
+        source={{ uri: image ? image.medium : imagePlaceholder }}
         resizeMode="cover"
       />
       <PersonNameText>{name}</PersonNameText>

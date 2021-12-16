@@ -56,15 +56,15 @@ export const Schedule = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
-  
-  max-width: 60%;
+
+  max-width: 50%;
 `;
 
 export const Genres = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
-
+  max-width: 50%;
 `;
 
 export const SummaryText = styled.Text`

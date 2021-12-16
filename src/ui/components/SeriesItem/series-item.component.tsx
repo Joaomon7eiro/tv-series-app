@@ -28,7 +28,7 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = false }) =
       hasFixedSize={hasFixedSize}
     >
       <SeriesImage
-        source={{ uri: image ? image.original : imagePlaceholder }}
+        source={{ uri: image ? image.medium : imagePlaceholder }}
         resizeMode="cover"
         hasFixedSize={hasFixedSize}
       />

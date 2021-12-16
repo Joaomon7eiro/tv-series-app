@@ -31,7 +31,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ data }: EpisodeItemProps) => 
   return (
     <Container onPress={handleNavigation}>
       <Header>
-        <EpisodeImage source={{ uri: image ? image.original : imagePlaceholder }} />
+        <EpisodeImage source={{ uri: image ? image.medium : imagePlaceholder }} />
         <TitleWrapper>
           <TitleText>{`${episodeNumber} ${name}`}</TitleText>
         </TitleWrapper>
