@@ -6,9 +6,12 @@ import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components/native';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
 import store from './app/redux/store';
 import AppNavigation from './ui/navigation';
 import { theme } from './ui/styles/theme';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -24,10 +27,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <StatusBar style="light" />
-        <AppNavigation />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <StatusBar style="light" />
+          <AppNavigation />
+        </ThemeProvider>
+      </QueryClientProvider>
     </Provider>
   );
 };

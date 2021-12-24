@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import { useTheme } from 'styled-components';
-import { getAllSeries } from '../../../app/redux/actions/series.action';
-import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
+import { Series } from '../../../app/redux/reducers/series.reducer';
+import { useSeries } from '../../../hooks/all-series.hook';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
 import {
@@ -11,27 +11,26 @@ import {
 } from './series.styles';
 
 const SeriesPage: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const series = useAppSelector((state) => state.series);
-  const ui = useAppSelector((state) => state.ui);
+  const [page, setPage] = useState(0);
 
   const theme = useTheme();
   const { colors } = useTheme();
 
-  const [page, setPage] = useState(0);
+  const query = useSeries();
+  const series = query?.data?.pages.map((p: {data: Series[]}) => p.data).flat();
 
   useEffect(() => {
-    dispatch(getAllSeries(page));
+    query.fetchNextPage({ pageParam: page });
   }, [page]);
 
   const handleOnEndReached = () => {
-    if (!ui.pending) {
-      setPage(page + 1);
+    if (!query.isFetching) {
+      setPage((previousPage) => previousPage + 1);
     }
   };
 
   const listHeaderComponent = () => (<Title>TV SERIES</Title>);
-  const listFooterComponent = () => (ui.pending ? <ActivityIndicator color={theme.colors.primary} /> : null);
+  const listFooterComponent = () => (query.isFetching ? <ActivityIndicator color={theme.colors.primary} /> : null);
 
   return (
     <Container
@@ -40,7 +39,7 @@ const SeriesPage: React.FC = () => {
     >
       <FlatList
         data={series}
-        keyExtractor={(item) => String(item.id)}
+        keyExtractor={(item, index) => String(item.id) + String(index)}
         ListHeaderComponent={listHeaderComponent}
         ListFooterComponent={listFooterComponent}
         contentContainerStyle={{
@@ -54,7 +53,8 @@ const SeriesPage: React.FC = () => {
         numColumns={3}
         renderItem={({ item }) => <SeriesItem data={item} />}
         onEndReached={handleOnEndReached}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0}
+        scrollEventThrottle={16}
       />
     </Container>
   );
