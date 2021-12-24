@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import { useTheme } from 'styled-components';
-import { Series } from '../../../app/redux/reducers/series.reducer';
-import { useSeries } from '../../../hooks/all-series.hook';
+import { useAllSeries } from '../../../hooks/series.hook';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
 import {
@@ -16,8 +15,8 @@ const SeriesPage: React.FC = () => {
   const theme = useTheme();
   const { colors } = useTheme();
 
-  const query = useSeries();
-  const series = query?.data?.pages.map((p: {data: Series[]}) => p.data).flat();
+  const query = useAllSeries();
+  const series = query?.data?.pages.flat();
 
   useEffect(() => {
     query.fetchNextPage({ pageParam: page });

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,7 +21,6 @@ import {
   ContentHeader,
   Header,
 } from './series-details.styles';
-import { getSeasonsBySeriesId } from '../../../app/redux/actions/seasons.action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 import { Seasons } from '../../components/Seasons/seasons.component';
 import { toggleFavorite } from '../../../app/redux/actions/favorites.actions';
@@ -41,18 +40,12 @@ export const SeriesDetails: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const seasons = useAppSelector((state) => state.seasons);
-
   const getIsFavorite = createSelector(
     (state: RootState) => state.favorites,
     (favorites) => favorites.some((f) => f.id === series.id),
   );
 
   const isFavorite = useAppSelector(getIsFavorite);
-
-  useEffect(() => {
-    dispatch(getSeasonsBySeriesId(series.id));
-  }, [series]);
 
   const genres = useMemo(() => series.genres.join('/'), [series]);
   const days = useMemo(() => series.schedule.days.join(', '), [series]);
@@ -111,7 +104,7 @@ export const SeriesDetails: React.FC = () => {
           </SummaryText>
         </Content>
 
-        <Seasons data={seasons} />
+        <Seasons serieId={series.id} />
 
       </SafeAreaView>
     </Container>

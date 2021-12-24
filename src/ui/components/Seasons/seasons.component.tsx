@@ -1,50 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import DropDownPicker, { ItemType, ValueType } from 'react-native-dropdown-picker';
-import { ScrollView } from 'react-native-gesture-handler';
+import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 import { ActivityIndicator } from 'react-native';
 import { useTheme } from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 
 import {
   Container,
 } from './seasons.styles';
-import { getEpisodesBySeasonId } from '../../../app/redux/actions/episodes.action';
-import { EpisodeItem } from '../EpisodeItem/episode-item.component';
-import { Season } from '../../../app/redux/reducers/seasons.reducer';
+import { useSeason } from '../../../hooks/season.hook';
+import { EpisodesContainer } from '../Episodes/episodes.component';
 
 type SeasonsProps = {
-  data: Season[]
+  serieId: number;
 }
-export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
-  const [currentSeasonId, setCurrentSeasonId] = useState(0);
+export const Seasons: React.FC<SeasonsProps> = ({ serieId }: SeasonsProps) => {
+  const { data: seasons, isFetching } = useSeason(serieId);
 
-  const dispatch = useAppDispatch();
-  const episodes = useAppSelector((state) => state.episodes);
-  const ui = useAppSelector((state) => state.ui);
-
-  const [open, setOpen] = useState(false);
-
-  const [items, setItems] = useState<ItemType[]>([] as ItemType[]);
+  const [currentSeasonId, setCurrentSeasonId] = useState<number>(0);
 
   const theme = useTheme();
 
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState<ItemType[]>([]);
+
   useEffect(() => {
-    if (data.length) {
-      setItems(data.map((season) => ({
+    if (seasons?.length) {
+      setCurrentSeasonId(seasons[0].id);
+      setItems(seasons.map((season) => ({
         label: `Season ${season.number}`,
         value: season.id,
       })));
-      if (currentSeasonId !== data[0].id) {
-        setCurrentSeasonId(data[0].id);
-      }
     }
-  }, [data]);
+  }, [seasons]);
 
-  const handleDropdownChange = (value: ValueType | ValueType[] | null) => {
-    if (value) {
-      dispatch(getEpisodesBySeasonId(value as number));
-    }
-  };
+  if (isFetching) {
+    return (
+      <Container>
+        <ActivityIndicator color={theme.colors.primary} />
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -73,15 +67,8 @@ export const Seasons: React.FC<SeasonsProps> = ({ data }: SeasonsProps) => {
         setOpen={setOpen}
         value={currentSeasonId}
         setValue={setCurrentSeasonId}
-        onChangeValue={handleDropdownChange}
       />
-      {ui.pending ? <ActivityIndicator color={theme.colors.primary} /> : null}
-      <ScrollView>
-        {episodes.map((episode) => (
-          <EpisodeItem key={episode.id} data={episode} />
-        ))}
-      </ScrollView>
-
+      <EpisodesContainer seasonId={currentSeasonId} />
     </Container>
   );
 };
