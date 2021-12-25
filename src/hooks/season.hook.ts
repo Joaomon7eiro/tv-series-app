@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { Season } from '../app/redux/reducers/seasons.reducer';
 import api from '../infra/services/api';
+import { Season } from '../types/series';
 
 const fetchSeries = async (id: number) => {
   const response = await api.get<Season[]>(`/shows/${id}/seasons`);

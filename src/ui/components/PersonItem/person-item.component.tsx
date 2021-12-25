@@ -8,7 +8,7 @@ import {
   PersonNameText,
 } from './person-item.styles';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
-import { Person } from '../../../app/redux/reducers/search.reducer';
+import { Person } from '../../../types/series';
 
 type PersonItemProps = {
   data: Person,

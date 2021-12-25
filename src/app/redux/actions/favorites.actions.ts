@@ -1,4 +1,4 @@
-import { Series } from '../reducers/series.reducer';
+import { Series } from '../../../types/series';
 
 const favorites = '[favorites]';
 

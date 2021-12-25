@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { favoriteActions, updateFavorites } from '../actions/favorites.actions';
 import { hideSpinner, showSpinner } from '../actions/ui.actions';
 import { RootState } from '../store';
-import { Series } from '../reducers/series.reducer';
+import { Series } from '../../../types/series';
 
 const favoritesKey = '@favorites:';
 

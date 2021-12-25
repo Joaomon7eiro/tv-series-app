@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { createSelector } from 'reselect';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from 'styled-components';
-import { Series } from '../../../app/redux/reducers/series.reducer';
 
 import {
   Container,
@@ -27,6 +26,7 @@ import { toggleFavorite } from '../../../app/redux/actions/favorites.actions';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 import { RootState } from '../../../app/redux/store';
 import { BackButton } from '../../components/BackButton/back-button.component';
+import { Series } from '../../../types/series';
 
 type RouteParams = {
   series: Series

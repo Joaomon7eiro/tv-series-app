@@ -1,7 +1,6 @@
 import { useQuery } from 'react-query';
-import { Person } from '../app/redux/reducers/search.reducer';
-import { Series } from '../app/redux/reducers/series.reducer';
 import api from '../infra/services/api';
+import { Person, Series } from '../types/series';
 import removeHtmlFromString from '../utils/remove-html-from-string';
 
 const fetchSearch = async (term: string) => {

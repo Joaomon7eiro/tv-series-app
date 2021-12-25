@@ -3,7 +3,6 @@ import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from 'styled-components';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Episode } from '../../../app/redux/reducers/episodes.reducer';
 
 import {
   Container,
@@ -14,6 +13,7 @@ import {
 } from './episode-details.styles';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 import { BackButton } from '../../components/BackButton/back-button.component';
+import { Episode } from '../../../types/series';
 
 type RouteParams = {
   episode: Episode

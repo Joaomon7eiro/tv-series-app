@@ -4,7 +4,6 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Person } from '../../../app/redux/reducers/search.reducer';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
@@ -17,6 +16,7 @@ import {
 } from './person-details.styles';
 import { BackButton } from '../../components/BackButton/back-button.component';
 import { useCastCredit } from '../../../hooks/cast-credit.hook';
+import { Person } from '../../../types/series';
 
 type RouteParams = {
   person: Person

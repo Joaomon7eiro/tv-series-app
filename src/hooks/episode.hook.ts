@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { Episode } from '../app/redux/reducers/episodes.reducer';
 import api from '../infra/services/api';
+import { Episode } from '../types/series';
 import removeHtmlFromString from '../utils/remove-html-from-string';
 
 const fetchEpisodes = async (id: number) => {

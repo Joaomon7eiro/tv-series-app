@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Series } from '../../../app/redux/reducers/series.reducer';
+import { Series } from '../../../types/series';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 
 import {

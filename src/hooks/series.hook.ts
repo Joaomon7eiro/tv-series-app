@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from 'react-query';
-import { Series } from '../app/redux/reducers/series.reducer';
 import api from '../infra/services/api';
+import { Series } from '../types/series';
 import removeHtmlFromString from '../utils/remove-html-from-string';
 
 const fetchAllSeries = async ({ pageParam = 0 }) => {

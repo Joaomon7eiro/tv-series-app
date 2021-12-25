@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Series } from '../../../app/redux/reducers/series.reducer';
+import { Series } from '../../../types/series';
 
 export const Container = styled(LinearGradient)`
   flex: 1;

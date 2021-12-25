@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
+import { Series } from '../../../types/series';
 import { favoriteActions } from '../actions/favorites.actions';
-import { Series } from './series.reducer';
 
 const initialState = [] as Series[];
 
