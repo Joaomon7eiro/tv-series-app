@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'styled-components';
-import { searchSeriesByName } from '../../../app/redux/actions/search.action';
-import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
+import { useSearch } from '../../../hooks/search.hook';
 import { PersonItem } from '../../components/PersonItem/person-item.component';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
@@ -16,11 +15,12 @@ import {
 
 export const Search: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
-
-  const dispatch = useAppDispatch();
-  const search = useAppSelector((state) => state.search);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const { colors } = useTheme();
+
+  const { data, isLoading } = useSearch(searchTerm);
+  const { people, series } = data || {};
 
   return (
     <Container
@@ -28,50 +28,57 @@ export const Search: React.FC = () => {
       start={{ x: 0.1, y: 0.2 }}
     >
       <SafeAreaView>
-
         <SearchWrapper>
           <SearchInput
             value={searchValue}
             placeholder="Search for series and artists"
-            onSubmitEditing={() => dispatch(searchSeriesByName(searchValue))}
+            onSubmitEditing={() => setSearchTerm(searchValue)}
             onChangeText={setSearchValue}
           />
         </SearchWrapper>
 
-        {search.series?.length
+        {isLoading
+          ? <ActivityIndicator color={colors.primary} />
+          : null}
+
+        {series?.length
           ? (
-            <SearchTitleText>
-              Series
-            </SearchTitleText>
+            <>
+              <SearchTitleText>
+                Series
+              </SearchTitleText>
+              <FlatList
+                data={series}
+                keyExtractor={(item, index) => String(item.id) + String(index)}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingHorizontal: 12,
+                }}
+                renderItem={({ item }) => <SeriesItem data={item} hasFixedSize />}
+              />
+            </>
           ) : null}
 
-        <FlatList
-          data={search.series}
-          keyExtractor={(item) => String(item.id)}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingHorizontal: 12,
-          }}
-          renderItem={({ item }) => <SeriesItem data={item} hasFixedSize />}
-        />
-        {search.people?.length
+        {people?.length
           ? (
-            <SearchTitleText>
-              People
-            </SearchTitleText>
+            <>
+              <SearchTitleText>
+                People
+              </SearchTitleText>
+              <FlatList
+                data={people}
+                keyExtractor={(item, index) => String(item.id) + String(index)}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingHorizontal: 12,
+                }}
+                renderItem={({ item }) => <PersonItem data={item} />}
+              />
+            </>
           ) : null}
 
-        <FlatList
-          data={search.people}
-          keyExtractor={(item) => String(item.id)}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingHorizontal: 12,
-          }}
-          renderItem={({ item }) => <PersonItem data={item} />}
-        />
       </SafeAreaView>
 
     </Container>
