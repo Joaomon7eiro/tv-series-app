@@ -1,12 +1,10 @@
 import { useRoute } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getCastCreditsByPersonId } from '../../../app/redux/actions/cast-credits.actions';
 import { Person } from '../../../app/redux/reducers/search.reducer';
-import { useAppDispatch, useAppSelector } from '../../../hooks/custom-hooks';
 import imagePlaceholder from '../../../utils/image-placeholder.util';
 import { SeriesItem } from '../../components/SeriesItem/series-item.component';
 
@@ -18,6 +16,7 @@ import {
   Header,
 } from './person-details.styles';
 import { BackButton } from '../../components/BackButton/back-button.component';
+import { useCastCredit } from '../../../hooks/cast-credit.hook';
 
 type RouteParams = {
   person: Person
@@ -28,12 +27,7 @@ export const PersonDetails: React.FC = () => {
   const { person: { name, image, id } } = route.params as RouteParams;
   const theme = useTheme();
 
-  const series = useAppSelector((state) => state.castCredits);
-
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getCastCreditsByPersonId(id));
-  }, [id]);
+  const { data: series } = useCastCredit(id);
 
   return (
     <Container>
@@ -50,7 +44,7 @@ export const PersonDetails: React.FC = () => {
 
         <TitleText>{name}</TitleText>
 
-        {series.length
+        {series?.length
           ? <SeriesTitleText>Series:</SeriesTitleText> : null}
         <FlatList
           data={series}
