@@ -1,7 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { useTheme } from 'styled-components';
-import { useAppSelector } from '../../../hooks/custom-hooks';
 import { useFavorites } from '../../../hooks/favorites.context';
 import { FavoriteItem } from '../../components/FavoriteItem/favorite-item.component';
 
@@ -12,11 +11,9 @@ import {
 
 export const Favorites: React.FC = () => {
   const { favorites } = useFavorites();
-  const ui = useAppSelector((state) => state.ui);
   const { colors } = useTheme();
 
   const listHeaderComponent = () => (<Title>FAVORITE SERIES</Title>);
-  const listFooterComponent = () => (ui.pending ? <ActivityIndicator color={colors.primary} /> : null);
 
   return (
     <Container
@@ -27,7 +24,6 @@ export const Favorites: React.FC = () => {
         data={favorites}
         keyExtractor={(item) => String(item.id)}
         ListHeaderComponent={listHeaderComponent}
-        ListFooterComponent={listFooterComponent}
         contentContainerStyle={{
           paddingBottom: 12,
           paddingTop: 60,
