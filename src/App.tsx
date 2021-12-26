@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import store from './app/redux/store';
 import AppNavigation from './ui/navigation';
+import { FavoritesContextProvider } from './hooks/favorites.context';
 import { theme } from './ui/styles/theme';
 
 const queryClient = new QueryClient();
@@ -28,10 +29,12 @@ const App = () => {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <StatusBar style="light" />
-          <AppNavigation />
-        </ThemeProvider>
+        <FavoritesContextProvider>
+          <ThemeProvider theme={theme}>
+            <StatusBar style="light" />
+            <AppNavigation />
+          </ThemeProvider>
+        </FavoritesContextProvider>
       </QueryClientProvider>
     </Provider>
   );

@@ -26,7 +26,6 @@ export const FavoriteItem: React.FC<SeriesItemProps> = ({ data, hasFixedSize = f
     <Container
       onPress={handleNavigate}
       hasFixedSize={hasFixedSize}
-
     >
       <SeriesImage
         source={{ uri: image ? image.medium : imagePlaceholder }}
